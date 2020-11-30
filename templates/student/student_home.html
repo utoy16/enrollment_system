@@ -1,0 +1,56 @@
+{% extends "student/base.html" %}
+{% block title %}Student Home{% endblock title %}
+{% block content %}
+
+    <div class="card-body">
+        <br>
+        <h1>Student Profile</h1>
+        <br>
+       <div class="form-group">
+           <label>Student ID </label>
+           <input type="text" class="form-control" name="username" value="{{ user.username }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>First Name </label>
+           <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>Last Name </label>
+           <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>Address </label>
+           <textarea name="address" class="form-control" row="5" disabled="disabled">{{ student.address }}</textarea>
+       </div>
+
+       <div class="form-group">
+           <label>Birthday </label>
+           <input type="date" class="form-control" name="birthday" value="{{ student.birthday }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>Gender </label>
+           <input type="text" class="form-control" name="gender" value="{{ student.gender }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>Parent or Guardian Name</label>
+           <input type="text" class="form-control" name="guardian_name" value="{{ student.guardian_name }}" disabled="disabled">
+       </div>
+
+       <div class="form-group">
+           <label>Address</label>
+           <textarea name="guardian_address" class="form-control" row="5" disabled="disabled">{{ student.guardian_address }}</textarea>
+       </div>
+
+       <div class="form-group">
+           <label>Contact No.</label>
+           <input type="number" class="form-control" name="contact_no" value="{{ student.contact_no }}" disabled="disabled">
+       </div>
+    </div>
+
+
+{% endblock content %}

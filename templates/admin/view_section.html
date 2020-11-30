@@ -1,0 +1,38 @@
+{% extends 'admin/base.html' %}
+{% block title %}Admin - View Section {% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <h2>Section List</h2> <a href="{% url 'add_section' %}" class="btn btn-primary">Add New Section</a></span>
+        <br>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+                    <thead>
+                    <th>Section ID</th>
+                    <th>Section Name</th>
+                    <th>Grade Level</th>
+                    <th>Adviser</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                {% for section in section %}
+                <tr>
+                    <td>{{ section.id }}</td>
+                    <td>{{ section.section_name }}</td>
+                    <th>{{ section.grade_level }}</th>
+                    <th>{{ section.adviser_id }}</th>
+                    <th><span> <a href="/update_section/{{ section.id }}" class="btn btn-primary">Edit</a></span> <span><a href="/delete_section/{{ section.id }}" class="btn btn-primary">Delete</a></span></th>
+                </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock content %}

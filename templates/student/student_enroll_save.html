@@ -1,0 +1,60 @@
+{% extends "student/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Student Enrollment{% endblock %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h1 align="center" class="card-title">Enrollment</h1>
+                <h4 class="card-title">Student ID: {{ user.username }}</h4>
+                <h4 class="card-title">Name: {{ user.first_name }} {{ user.last_name }}</h4>
+                <h4 class="card-title">Grade: {{ user.student.grade_level }}</h4>
+                <br>
+                {% for section in section %}
+                <h4 class="card-title">Section: {{ section.section_name }}</h4>
+                <h4 class="card-title">Adviser: {{ section.adviser_id }}</h4>
+                {% endfor %}
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <h3>{{ message }}</h3>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="table-responsive">
+                    <table  class="table table-striped table-bordered" width="100%">
+                        <thead>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Room</th>
+                        <th>Section</th>
+                        </thead>
+                        {% for subject in subject %}
+                        <tr>
+                            <th>{{ subject.subject_name }}</th>
+                            <th>{{ subject.teacher_id }}</th>
+                            <th>{{ subject.time_id }}</th>
+                            <th>{{ subject.room_id }}</th>
+                            <th>{{ subject.section_id }}</th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <form method="post" name="enroll">
+                        {% csrf_token %}
+                        <div align="center">
+                            <a href="{% url 'student_enroll' %}" class="btn btn-primary">Back</a>
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+{% endblock content %}

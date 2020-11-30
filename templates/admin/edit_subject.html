@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+{% block title %}Admin - Edit Subject{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <br>
+    <h2>Update Subject</h2>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <h4>Subject: {{ instance.subject_name }}</h4>
+                <h4>Section: {{ instance.section_id }}</h4>
+                <h6>Last Updated: {{ instance.updated_at }}</h6>
+
+                <div class="col-sm-4">
+                    {{ form|crispy }}
+                    <div class="container">
+                        <a href="{% url 'view_subject' %}" class="btn btn-primary">Back</a>
+                        <a href="{% url 'add_time' %}" class="btn btn-primary">Add Time</a>
+                        <a href="{% url 'add_room' %}" class="btn btn-primary">Add Room</a>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

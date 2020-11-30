@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+{% block title %}Admin - Add Student Account {% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <br>
+    <h2>Add Student</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    {{ form|crispy }}
+                    <div class="container">
+                        <a href="{% url 'view_student' %}" class="btn btn-primary">Back</a>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+{% endblock content %}

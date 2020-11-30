@@ -1,0 +1,51 @@
+{% extends 'admin/base.html' %}
+{% block title %}Admin - Add Time{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h1>Time</h1>
+    <table class="table table-striped table-bordered" width=70%">
+        <thead>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Action</th>
+        </thead>
+        {% for time in time %}
+        <tr>
+            <td>{{ time.start_time }}</td>
+            <td>{{ time.end_time }}</td>
+            <th><span> <a href="/delete_time/{{ time.id }}" class="btn btn-primary">Delete</a></span></th>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>Add Time</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="form-group row">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <label class="col-sm-1 col-form-label"></label>
+                <h6>Sample Time Format: 7:00 = 7:00 AM</h6>
+                <h6>Sample Time Format: 14:00 = 2:00 PM</h6>
+                <div class="col-sm-4">
+                    {{ form|crispy }}
+                    <div class="container">
+                        <a href="{% url 'view_subject' %}" class="btn btn-primary">Back</a>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock content %}
